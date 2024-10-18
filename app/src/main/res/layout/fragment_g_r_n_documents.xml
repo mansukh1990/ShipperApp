@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_color"
+    android:paddingBottom="@dimen/_20sdp"
+    tools:context=".ui.fragment.GRNDocumentsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/bg_view_products"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLrNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtLRNumberLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:text="@string/str_lr_number"
+                android:textColor="#0F5D98"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtLRNumberValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:text=" IK3533"
+                android:textColor="#0F5D98"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@id/txtLRNumberLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtLRNumberLabel"
+                app:layout_constraintTop_toTopOf="@id/txtLRNumberLabel" />
+
+            <TextView
+                android:id="@+id/txtVehicleNumberLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/mont_medium"
+                android:text="@string/str_vehicle_number"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@id/clLrNumber"
+                app:layout_constraintStart_toStartOf="@id/txtLRNumberLabel"
+                app:layout_constraintTop_toBottomOf="@id/txtLRNumberLabel" />
+
+            <TextView
+                android:id="@+id/txtVehicleNumberValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_medium"
+                android:text="KA063378"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@id/txtVehicleNumberLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtVehicleNumberLabel"
+                app:layout_constraintTop_toTopOf="@id/txtVehicleNumberLabel" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLrNumberDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clLrNumber">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:background="#D0D5DD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/clLrNumberDetails" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clTransporter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                app:layout_constraintEnd_toStartOf="@id/clCreatedDate"
+                app:layout_constraintStart_toStartOf="@id/clLrNumberDetails"
+                app:layout_constraintTop_toBottomOf="@id/view">
+
+                <TextView
+                    android:id="@+id/txtTransporterLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_bold"
+                    android:gravity="start"
+                    android:text="@string/str_transporter"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toEndOf="@id/clTransporter"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/clTransporter"
+                    app:layout_constraintTop_toTopOf="@id/clTransporter" />
+
+                <TextView
+                    android:id="@+id/txtTransporterValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/mont_regular"
+                    android:gravity="start"
+                    android:text="Asha Transport"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/clTransporter"
+                    app:layout_constraintEnd_toEndOf="@id/clTransporter"
+                    app:layout_constraintStart_toStartOf="@id/clTransporter"
+                    app:layout_constraintTop_toBottomOf="@id/txtTransporterLabel" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clCreatedDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/clTransporter"
+                app:layout_constraintEnd_toEndOf="@id/clLrNumberDetails"
+                app:layout_constraintStart_toEndOf="@id/clTransporter"
+                app:layout_constraintTop_toTopOf="@id/clTransporter">
+
+                <TextView
+                    android:id="@+id/txtCreatedDateLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_bold"
+                    android:gravity="start"
+                    android:text="@string/str_created_date"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toEndOf="@id/clCreatedDate"
+                    app:layout_constraintStart_toStartOf="@id/clCreatedDate"
+                    app:layout_constraintTop_toTopOf="@id/clCreatedDate" />
+
+                <TextView
+                    android:id="@+id/txtCreatedDateValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/mont_regular"
+                    android:gravity="start"
+                    android:text="18/07/2024"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/clCreatedDate"
+                    app:layout_constraintEnd_toStartOf="@id/txtTimeLabel"
+                    app:layout_constraintStart_toStartOf="@id/clCreatedDate"
+                    app:layout_constraintTop_toBottomOf="@id/txtCreatedDateLabel" />
+
+                <TextView
+                    android:id="@+id/txtTimeLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="@font/mont_regular"
+                    android:gravity="start"
+                    android:text="6:13 PM"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtCreatedDateValue"
+                    app:layout_constraintEnd_toEndOf="@id/clCreatedDate"
+                    app:layout_constraintStart_toEndOf="@+id/txtCreatedDateValue"
+                    app:layout_constraintTop_toTopOf="@+id/txtCreatedDateValue" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clDriver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintEnd_toStartOf="@id/clDriverMobileNumber"
+                app:layout_constraintStart_toStartOf="@id/clLrNumberDetails"
+                app:layout_constraintTop_toBottomOf="@id/clTransporter">
+
+                <TextView
+                    android:id="@+id/txtDriverLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_bold"
+                    android:gravity="start"
+                    android:text="@string/str_driver"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toEndOf="@id/clDriver"
+                    app:layout_constraintStart_toStartOf="@id/clDriver"
+                    app:layout_constraintTop_toTopOf="@id/clDriver" />
+
+                <TextView
+                    android:id="@+id/txtDriverValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/mont_regular"
+                    android:gravity="start"
+                    android:text="Satish Pal"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/clDriver"
+                    app:layout_constraintEnd_toEndOf="@id/clDriver"
+                    app:layout_constraintStart_toStartOf="@id/clDriver"
+                    app:layout_constraintTop_toBottomOf="@id/txtDriverLabel" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clDriverMobileNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/clDriver"
+                app:layout_constraintEnd_toEndOf="@id/clLrNumberDetails"
+                app:layout_constraintStart_toEndOf="@id/clDriver"
+                app:layout_constraintTop_toTopOf="@id/clDriver">
+
+                <TextView
+                    android:id="@+id/txtDriverMobileNumberLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mont_bold"
+                    android:gravity="start"
+                    android:text="@string/str_driver_mobile_no"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toEndOf="@id/clDriverMobileNumber"
+                    app:layout_constraintStart_toStartOf="@id/clDriverMobileNumber"
+                    app:layout_constraintTop_toTopOf="@id/clDriverMobileNumber" />
+
+                <TextView
+                    android:id="@+id/txtDriverMobileNumberValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/mont_regular"
+                    android:gravity="start"
+                    android:text="2586634314"
+                    android:textColor="#6E6B7B"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/clDriverMobileNumber"
+                    app:layout_constraintEnd_toEndOf="@id/clDriverMobileNumber"
+                    app:layout_constraintStart_toStartOf="@id/clDriverMobileNumber"
+                    app:layout_constraintTop_toBottomOf="@id/txtDriverMobileNumberLabel" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

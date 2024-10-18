@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg_color">#ECF3F6</color>
+    <color name="clr_bg_order_placed">#D7F5FF</color>
+    <color name="clr_text_order_placed">#128FB7</color>
+    <color name="clr_bg_order_arrived">#BBE6F3</color>
+    <color name="clr_text_order_arrived">#128FB7</color>
+    <color name="clr_bg_grn_in_process">#FDF2D7</color>
+    <color name="clr_text_grn_in_process">#DC9E00</color>
+    <color name="clr_green">#12B76A</color>
+    <color name="clr_bg_qc_pending">#EAA901</color>
+    <color name="clr_bg_qc_in_process">#FDF2D7</color>
+    <color name="clr_text_qc_in_process">#DC9E00</color>
+    <color name="clr_bg_putaway_in_process">#FDF2D7</color>
+    <color name="clr_bg_return">#FFB7A1</color>
+    <color name="clr_text_return">#E4292D</color>
+    <color name="clr_bg_manifest">#FDF2D7</color>
+    <color name="clr_text_manifest">#DC9E00</color>
+    <color name="color_bg_title">#F5F5F5</color>
+    <color name="colorPrimary">#0F5D98</color>
+    <color name="sku_background">#EEF2FF</color>
+    <color name="darkGray">#878692</color>
+    <color name="second_middle_primary">#f2f2f2</color>
+    <color name="dark_gray">#6E6B7B</color>
+    <color name="grey">#a9a9a9</color>
+    <color name="color_rejected">#ffd7d9</color>
+    <color name="red">#ea5556</color>
+    <color name="green">#29c770</color>
+    <color name="light_ripple">#40ffffff</color>
+
+
+
+
+
+
+
+</resources>

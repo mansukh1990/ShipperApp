@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_10sdp"
+    android:background="@drawable/bg_view_products">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clExpand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtStatusByLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mont_semibold"
+            android:text="@string/str_status_by"
+            android:textColor="#6E6B7B"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintEnd_toStartOf="@id/txtStatus"
+            app:layout_constraintStart_toStartOf="@+id/clExpand"
+            app:layout_constraintTop_toTopOf="@+id/clExpand" />
+
+
+        <TextView
+            android:id="@+id/txtStatusByValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/mont_medium"
+            android:text="Punit Sonagra - Worker"
+            android:textColor="#0F5D98"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintBottom_toBottomOf="@id/clExpand"
+            app:layout_constraintEnd_toStartOf="@id/txtStatus"
+            app:layout_constraintStart_toStartOf="@id/txtStatusByLabel"
+            app:layout_constraintTop_toBottomOf="@id/txtStatusByLabel" />
+
+
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@drawable/bg_view_status_log"
+            android:drawablePadding="@dimen/_2sdp"
+            android:fontFamily="@font/mont_semibold"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="@string/str_order_placed"
+            android:textColor="#128FB7"
+            android:textSize="@dimen/_8ssp"
+            app:drawableStartCompat="@drawable/ic_check"
+            app:layout_constraintBottom_toBottomOf="@id/clExpand"
+            app:layout_constraintEnd_toStartOf="@id/imgExpandBtn"
+            app:layout_constraintTop_toTopOf="@id/clExpand" />
+
+
+        <ImageView
+            android:id="@+id/imgExpandBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_down"
+            app:layout_constraintBottom_toBottomOf="@id/clExpand"
+            app:layout_constraintEnd_toEndOf="@+id/clExpand"
+            app:layout_constraintTop_toTopOf="@+id/clExpand" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCollapse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clExpand">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#D0D5DD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/clCollapse" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTimeStamp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/clRemarks"
+            app:layout_constraintStart_toStartOf="@id/clCollapse"
+            app:layout_constraintTop_toBottomOf="@id/view">
+
+            <TextView
+                android:id="@+id/txtTimeStampLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="start"
+                android:text="@string/str_time_stamp"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clTimeStamp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/clTimeStamp"
+                app:layout_constraintTop_toTopOf="@id/clTimeStamp" />
+
+            <TextView
+                android:id="@+id/txtTimeStampValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="start"
+                android:text="21/08/2024 16:13:43"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@id/clTimeStamp"
+                app:layout_constraintEnd_toEndOf="@id/clTimeStamp"
+                app:layout_constraintStart_toStartOf="@id/clTimeStamp"
+                app:layout_constraintTop_toBottomOf="@id/txtTimeStampLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clRemarks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/clCollapse"
+            app:layout_constraintStart_toEndOf="@id/clTimeStamp"
+            app:layout_constraintTop_toTopOf="@+id/clTimeStamp">
+
+            <TextView
+                android:id="@+id/txtRemarksLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="start"
+                android:text="@string/str_remarks"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clRemarks"
+                app:layout_constraintStart_toStartOf="@id/clRemarks"
+                app:layout_constraintTop_toTopOf="@id/clRemarks" />
+
+            <TextView
+                android:id="@+id/txtRemarksValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="start"
+                android:text="129088989"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@id/clRemarks"
+                app:layout_constraintEnd_toEndOf="@id/clRemarks"
+                app:layout_constraintStart_toStartOf="@id/clRemarks"
+                app:layout_constraintTop_toBottomOf="@id/txtRemarksLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

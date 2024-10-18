@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_view_products"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clExpand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/clCollapse"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtBatchCodeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mont_bold"
+            android:text="@string/str_batch_code"
+            android:textColor="#0F5D98"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="@+id/clExpand"
+            app:layout_constraintTop_toTopOf="@+id/clExpand" />
+
+        <TextView
+            android:id="@+id/txtBatchCodeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mont_bold"
+            android:text=" ALMN180824"
+            android:textColor="#0F5D98"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toStartOf="@+id/imgExpandBtn"
+            app:layout_constraintBottom_toBottomOf="@id/txtBatchCodeLabel"
+            app:layout_constraintStart_toEndOf="@id/txtBatchCodeLabel"
+            app:layout_constraintTop_toTopOf="@id/txtBatchCodeLabel" />
+
+        <TextView
+            android:id="@+id/txtSkuNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mont_medium"
+            android:text="@string/str_sku_name_label"
+            android:textColor="#6E6B7B"
+            android:textSize="@dimen/_8ssp"
+            android:layout_marginTop="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="@id/clExpand"
+            app:layout_constraintStart_toStartOf="@id/txtBatchCodeLabel"
+            app:layout_constraintTop_toBottomOf="@id/txtBatchCodeLabel" />
+
+        <TextView
+            android:id="@+id/txtSkuNameValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mont_medium"
+            android:text=" Almond 1 kg"
+            android:textColor="#6E6B7B"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintEnd_toStartOf="@id/imgExpandBtn"
+            app:layout_constraintBottom_toBottomOf="@id/txtSkuNameLabel"
+            app:layout_constraintStart_toEndOf="@id/txtSkuNameLabel"
+            app:layout_constraintTop_toTopOf="@id/txtSkuNameLabel" />
+
+        <ImageView
+            android:id="@+id/imgExpandBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_down"
+            app:layout_constraintBottom_toBottomOf="@id/clExpand"
+            app:layout_constraintEnd_toEndOf="@+id/clExpand"
+            app:layout_constraintTop_toTopOf="@+id/clExpand" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCollapse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clExpand">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#D0D5DD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/clCollapse" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBarcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/clQuantity"
+            app:layout_constraintStart_toStartOf="@id/clCollapse"
+            app:layout_constraintTop_toBottomOf="@id/view">
+
+            <TextView
+                android:id="@+id/txtBarcodeLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="start"
+                android:text="@string/str_barcode"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clBarcode"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/clBarcode"
+                app:layout_constraintTop_toTopOf="@id/clBarcode" />
+
+            <TextView
+                android:id="@+id/txtBarcodeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="start"
+                android:text="8564785646"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                android:layout_marginTop="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/clBarcode"
+                app:layout_constraintEnd_toEndOf="@id/clBarcode"
+                app:layout_constraintStart_toStartOf="@id/clBarcode"
+                app:layout_constraintTop_toBottomOf="@id/txtBarcodeLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/clChamber"
+            app:layout_constraintStart_toEndOf="@id/clBarcode"
+            app:layout_constraintTop_toTopOf="@+id/clBarcode">
+
+            <TextView
+                android:id="@+id/txtQuantityLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="start"
+                android:text="@string/str_quantity"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clQuantity"
+                app:layout_constraintStart_toStartOf="@id/clQuantity"
+                app:layout_constraintTop_toTopOf="@id/clQuantity" />
+
+            <TextView
+                android:id="@+id/txtQuantityValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="start"
+                android:text="129088989"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                android:layout_marginTop="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/clQuantity"
+                app:layout_constraintEnd_toEndOf="@id/clQuantity"
+                app:layout_constraintStart_toStartOf="@id/clQuantity"
+                app:layout_constraintTop_toBottomOf="@id/txtQuantityLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clChamber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/clCollapse"
+            app:layout_constraintTop_toTopOf="@+id/clQuantity"
+            app:layout_constraintStart_toEndOf="@id/clQuantity">
+
+            <TextView
+                android:id="@+id/txtChamberLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="start"
+                android:text="@string/str_chamber"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clChamber"
+                app:layout_constraintStart_toStartOf="@id/clChamber"
+                app:layout_constraintTop_toTopOf="@id/clChamber" />
+
+            <TextView
+                android:id="@+id/txtChamberValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Chiller Chamber"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="start"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@id/clChamber"
+                app:layout_constraintEnd_toEndOf="@id/clChamber"
+                app:layout_constraintStart_toStartOf="@id/clChamber"
+                app:layout_constraintTop_toBottomOf="@id/txtChamberLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clRack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/clLocation"
+            app:layout_constraintStart_toStartOf="@+id/clCollapse"
+            app:layout_constraintTop_toBottomOf="@id/clBarcode"
+            app:layout_constraintBottom_toBottomOf="@+id/clCollapse">
+
+            <TextView
+                android:id="@+id/txtRackLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="start"
+                android:text="@string/str_rack"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clRack"
+                app:layout_constraintStart_toStartOf="@id/clRack"
+                app:layout_constraintTop_toTopOf="@id/clRack" />
+
+            <TextView
+                android:id="@+id/txtRackValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Chillrack"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="start"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clRack"
+                app:layout_constraintStart_toStartOf="@id/clRack"
+                app:layout_constraintTop_toBottomOf="@id/txtRackLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/clCollapse"
+            app:layout_constraintTop_toTopOf="@id/clRack"
+            app:layout_constraintBottom_toBottomOf="@id/clRack"
+            app:layout_constraintStart_toStartOf="@id/clQuantity"
+            app:layout_constraintTop_toBottomOf="@id/clQuantity"
+            >
+
+            <TextView
+                android:id="@+id/txtLocationLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="start"
+                android:text="@string/str_location"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clLocation"
+                app:layout_constraintStart_toStartOf="@id/clLocation"
+                app:layout_constraintTop_toTopOf="@id/clLocation" />
+
+            <TextView
+                android:id="@+id/txtLocationValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Frozloc1"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="start"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="#6E6B7B"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@id/clLocation"
+                app:layout_constraintStart_toStartOf="@id/clLocation"
+                app:layout_constraintTop_toBottomOf="@id/txtLocationLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

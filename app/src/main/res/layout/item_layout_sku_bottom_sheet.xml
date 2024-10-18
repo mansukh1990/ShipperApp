@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_view_products"
+    android:paddingBottom="@dimen/_20sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clImageShape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgShape"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_shape"
+            app:layout_constraintEnd_toEndOf="@id/clImageShape"
+            app:layout_constraintStart_toStartOf="@id/clImageShape"
+            app:layout_constraintTop_toTopOf="@id/clImageShape" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clViewProducts"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/bg_view_products"
+        android:elevation="@dimen/_1sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clImageShape">
+
+        <TextView
+            android:id="@+id/txtViewAllSku"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mont_bold"
+            android:text="View All Added SKU"
+            android:textColor="#353535"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@+id/clViewProducts"
+            app:layout_constraintStart_toStartOf="@id/clViewProducts"
+            app:layout_constraintTop_toTopOf="@+id/clViewProducts" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSkuTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_sku_title"
+            android:paddingVertical="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="@id/clViewProducts"
+            app:layout_constraintStart_toStartOf="@id/clViewProducts"
+            app:layout_constraintTop_toBottomOf="@id/txtViewAllSku">
+
+            <TextView
+                android:id="@+id/txtSkuNameLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/mont_medium"
+                android:text="@string/str_sku_name"
+                android:textColor="#0F5D98"
+                app:layout_constraintBottom_toBottomOf="@id/clSkuTitle"
+                app:layout_constraintEnd_toStartOf="@id/txtSkuQtyValue"
+                app:layout_constraintStart_toStartOf="@id/clSkuTitle"
+                app:layout_constraintTop_toTopOf="@id/clSkuTitle" />
+
+            <TextView
+                android:id="@+id/txtSkuQtyValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/mont_medium"
+                android:text="@string/str_sku_qty"
+                android:textColor="#0F5D98"
+                app:layout_constraintBottom_toBottomOf="@id/clSkuTitle"
+                app:layout_constraintEnd_toEndOf="@id/clSkuTitle"
+                app:layout_constraintTop_toTopOf="@id/clSkuTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSkuViewAllList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:overScrollMode="never"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clSkuTitle" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

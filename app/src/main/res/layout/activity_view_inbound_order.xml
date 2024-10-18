@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+   >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clToolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_toolbar"
+            android:paddingVertical="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/ic_back_wid"
+                app:layout_constraintBottom_toBottomOf="@id/clToolbar"
+                app:layout_constraintEnd_toStartOf="@id/txt_name"
+                app:layout_constraintStart_toStartOf="@id/clToolbar"
+                app:layout_constraintTop_toTopOf="@id/clToolbar"
+                app:layout_goneMarginEnd="@dimen/_5sdp" />
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/mont_bold"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/str_view_inbound_orders"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintBottom_toBottomOf="@id/clToolbar"
+                app:layout_constraintEnd_toEndOf="@id/clToolbar"
+                app:layout_constraintStart_toEndOf="@id/ivBack"
+                app:layout_constraintTop_toTopOf="@id/clToolbar" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clOrderDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_view_products"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clToolbar">
+
+
+            <TextView
+                android:id="@+id/txtYourOrderDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:text="@string/str_your_order_details"
+                android:textColor="#353535"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llOrderNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtYourOrderDetails">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clExternalOrderNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/llOrderNo"
+                    app:layout_constraintEnd_toStartOf="@id/clEstimatedArrivalDate"
+                    app:layout_constraintStart_toStartOf="@id/llOrderNo"
+                    app:layout_constraintTop_toTopOf="@id/llOrderNo">
+
+                    <TextView
+                        android:id="@+id/txtExternalOrderNo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/mont_semibold"
+                        android:text="@string/str_external_order_no"
+                        android:textColor="#0F5D98"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toEndOf="@id/clExternalOrderNo"
+                        app:layout_constraintStart_toStartOf="@id/clExternalOrderNo"
+                        app:layout_constraintTop_toTopOf="@id/clExternalOrderNo" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txtOrderNo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        app:layout_constraintEnd_toEndOf="@id/clExternalOrderNo"
+                        app:layout_constraintStart_toStartOf="@id/clExternalOrderNo"
+                        app:layout_constraintTop_toBottomOf="@+id/txtExternalOrderNo">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtOrderNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clEstimatedArrivalDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/llOrderNo"
+                    app:layout_constraintEnd_toEndOf="@id/llOrderNo"
+                    app:layout_constraintStart_toEndOf="@id/clExternalOrderNo"
+                    app:layout_constraintTop_toTopOf="@id/llOrderNo">
+
+                    <TextView
+                        android:id="@+id/txtEstimatedArrivalDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/mont_semibold"
+                        android:text="@string/str_estimated_arrival_date"
+                        android:textColor="#0F5D98"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toEndOf="@id/clEstimatedArrivalDate"
+                        app:layout_constraintStart_toStartOf="@id/clEstimatedArrivalDate"
+                        app:layout_constraintTop_toTopOf="@id/clEstimatedArrivalDate" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txtSelectedDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        app:layout_constraintEnd_toEndOf="@id/clEstimatedArrivalDate"
+                        app:layout_constraintStart_toStartOf="@id/clEstimatedArrivalDate"
+                        app:layout_constraintTop_toBottomOf="@+id/txtEstimatedArrivalDate">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtSelectedDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:padding="@dimen/_10sdp"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:drawableEnd="@drawable/ic_calendar"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/txtLetUsKnow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/mont_semibold"
+                android:text="@string/str_let_us_know"
+                android:textColor="#0F5D98"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llOrderNo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtEnterYourComments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:maxHeight="@dimen/_100sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLetUsKnow">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtEnterYourComments"
+                    android:layout_width="match_parent"
+                    android:gravity="start"
+                    android:layout_height="@dimen/_80sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAddedProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_view_products"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clOrderDetails">
+
+            <TextView
+                android:id="@+id/txtAddedProducts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mont_bold"
+                android:text="@string/str_added_products"
+                android:textColor="#353535"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSkuTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_sku_title"
+                android:paddingVertical="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="@+id/clAddedProducts"
+                app:layout_constraintStart_toStartOf="@+id/clAddedProducts"
+                app:layout_constraintTop_toBottomOf="@+id/txtAddedProducts">
+
+                <TextView
+                    android:id="@+id/txtSkuName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/mont_medium"
+                    android:text="@string/str_sku_name"
+                    android:textColor="#0F5D98"
+                    app:layout_constraintBottom_toBottomOf="@id/clSkuTitle"
+                    app:layout_constraintEnd_toStartOf="@id/txtSkuQty"
+                    app:layout_constraintStart_toStartOf="@id/clSkuTitle"
+                    app:layout_constraintTop_toTopOf="@id/clSkuTitle" />
+
+                <TextView
+                    android:id="@+id/txtSkuQty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:fontFamily="@font/mont_medium"
+                    android:text="@string/str_sku_qty"
+                    android:textColor="#0F5D98"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAddedProducts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="@id/clAddedProducts"
+                app:layout_constraintStart_toStartOf="@id/clAddedProducts"
+                app:layout_constraintTop_toBottomOf="@+id/clSkuTitle" />
+
+            <TextView
+                android:id="@+id/txtViewAllSkuList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/mont_semibold"
+                android:gravity="center"
+                android:text="View All"
+                android:textColor="#045C97"
+                app:layout_constraintEnd_toEndOf="@id/clAddedProducts"
+                app:layout_constraintStart_toStartOf="@+id/clAddedProducts"
+                app:layout_constraintTop_toBottomOf="@id/rvAddedProducts" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@color/bg_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clAddedProducts"
+                app:tabGravity="center"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorHeight="@dimen/_3sdp"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="#0F5D98"
+                app:tabTextColor="#62626280" />
+
+            <View
+                android:id="@+id/viewTabLayout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="#0F5D98"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewTabLayout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

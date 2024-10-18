@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">ShipperInboundOrder</string>
+    <string name="str_view_inbound_orders">View Inbound Orders</string>
+    <string name="str_your_order_details">Your order details</string>
+    <string name="str_order_no">Order no.</string>
+    <string name="str_external_order_no">External Order No.</string>
+    <string name="str_estimated_arrival_date">Estimated Arrival Date</string>
+    <string name="str_selected_date">Select Date</string>
+    <string name="str_let_us_know">Let us know if you have additional requirement</string>
+    <string name="str_enter_your_comments">Enter your comments</string>
+    <string name="str_added_products">Added product</string>
+    <string name="str_add_your_products">Add your product</string>
+    <string name="str_sku_name">SKU Name</string>
+    <string name="str_sku_qty">Qty.</string>
+    <string name="str_grn">GRN</string>
+    <string name="str_grn_document">GRN Documents</string>
+    <string name="str_quality_check">Quality Check</string>
+    <string name="str_docum">Documents</string>
+    <string name="str_putaway">Putaway</string>
+    <string name="str_status_log">Status Log</string>
+    <string name="str_batch_code">Batch Code :</string>
+    <string name="str_sku_name_label">SKU Name :</string>
+    <string name="str_barcode">Barcode</string>
+    <string name="str_quantity">Quantity</string>
+    <string name="str_expiry_date">Expiry Date</string>
+    <string name="str_temp">Temp</string>
+    <string name="str_pod">POD</string>
+    <string name="str_pod_image_description">pod image description</string>
+    <string name="str_lr_number">LR Number : </string>
+    <string name="str_vehicle_number">Vehicle No.:</string>
+    <string name="str_transporter">Transporter</string>
+    <string name="str_created_date">Created Date</string>
+    <string name="str_driver">Driver</string>
+    <string name="str_driver_mobile_no">Driver Mobile No.</string>
+    <string name="str_damaged">Damaged</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_image">Image</string>
+    <string name="str_chamber">Chamber</string>
+    <string name="str_rack">Rack</string>
+    <string name="str_location">Location</string>
+    <string name="str_status_by">Status By</string>
+    <string name="str_time_stamp">Time Stamp</string>
+    <string name="str_remarks">Remarks</string>
+    <string name="str_pod_image">POD Image</string>
+    <string name="str_order_placed">Order Placed</string>
+    <string name="str_arrived">Arrived</string>
+    <string name="str_grn_pending">GRN Pending</string>
+    <string name="str_grn_in_process">GRN in Process</string>
+    <string name="str_grn_completed">GRN Completed</string>
+    <string name="str_qc_pending">QC Pending</string>
+    <string name="str_qc_in_process">QC In Process</string>
+    <string name="str_qc_completed">QC Completed</string>
+    <string name="str_putaway_pending">Putaway Pending</string>
+    <string name="str_putaway_in_process">Putaway in Process</string>
+    <string name="str_putaway_completed">Putaway Completed</string>
+    <string name="str_return">Return</string>
+    <string name="str_return_order">Return Order</string>
+    <string name="str_manifest">Manifest</string>
+    <string name="str_dispatch">Dispatch</string>
+    <string name="str_dispatch_completed">Dispatch Completed</string>
+    <string name="str_picking">Picking</string>
+    <string name="str_picking_completed">Picking Completed</string>
+    <string name="str_return_completed">Return Completed</string>
+    <string name="str_create_inbound">Create Inbound</string>
+    <string name="str_step_01">STEP 01</string>
+    <string name="str_step_02">STEP 02</string>
+    <string name="str_sku_name_">SKU Name<font color='#EC1E27'>*</font></string>
+    <string name="str_qty_">Qty.<font color='#EC1E27'>*</font></string>
+    <string name="str_confirmation_">Confirmation</string>
+    <string name="str_est_date_of_arrival">Est. Date Of Arrival</string>
+    <string name="str_added_product">Added product</string>
+    <string name="str_approve">Approve</string>
+    <string name="str_reject">Reject</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="enter_email_id">Enter Email Id <font color='#FF0000'>*</font></string>
+    <string name="enter_password">Enter Password <font color='#FF0000'>*</font></string>
+    <string name="log_in">Log in</string>
+    <string name="continue_">Continue</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? <b>Sign up</b></string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="login_with_whatsapp">Login With WhatsApp</string>
+    <string name="terms_of_use">Terms Of Use</string>
+    <string name="privacy">Privacy</string>
+    <string name="policy">Policy</string>
+
+</resources>
