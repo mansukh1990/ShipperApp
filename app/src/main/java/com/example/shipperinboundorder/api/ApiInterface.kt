@@ -6,8 +6,10 @@ import com.example.shipperinboundorder.model.modelapi.inbundorderCreate.InboundO
 import com.example.shipperinboundorder.model.modelapi.inbundorderCreate.InboundOrderCreateResponse
 import com.example.shipperinboundorder.model.modelapi.login.LoginRequest
 import com.example.shipperinboundorder.model.modelapi.login.LoginResponse
-import com.example.shipperinboundorder.model.modelapi.skumodel.CreateInboundSkuResponse
+import com.example.shipperinboundorder.model.modelapi.orderlist.OrderListRequest
+import com.example.shipperinboundorder.model.modelapi.orderlist.OrderListResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -26,4 +28,11 @@ interface ApiInterface {
     fun createInboundOrder(
         @Header("Authorization") token: String,
         @Body request: InboundOrderCreateRequest): Call<InboundOrderCreateResponse>
+
+    @POST("customer/warehouse/order-list")
+    fun getOrders(
+        @Header("Authorization") token: String,
+        @Body request: OrderListRequest
+    ): Call<OrderListResponse>
+
 }

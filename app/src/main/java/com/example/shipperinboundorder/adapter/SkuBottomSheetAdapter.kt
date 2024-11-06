@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shipperinboundorder.databinding.ItemLayoutSkuBinding
 import com.example.shipperinboundorder.model.SkuListModel
+import com.example.shipperinboundorder.model.modelapi.inboundorderskulist.Sku
 
-class SkuBottomSheetAdapter(private val skuList: List<SkuListModel>) :
+class SkuBottomSheetAdapter(private val skuList:  MutableList<Pair<Sku, Int>>) :
     RecyclerView.Adapter<SkuBottomSheetAdapter.SkuBottomSheetViewHolder>() {
 
     class SkuBottomSheetViewHolder(val binding: ItemLayoutSkuBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(skuListModel: SkuListModel) {
-            binding.txtSkuName.text = skuListModel.skuName
-            binding.txtSkuQty.text = skuListModel.skuQty
+        fun bind(sku: Pair<Sku, Int>) {
+            binding.txtSkuName.text = sku.first.name
+            binding.txtSkuQty.text = sku.second.toString()
 
         }
 

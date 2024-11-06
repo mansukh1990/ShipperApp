@@ -29,11 +29,13 @@
     <color name="red">#ea5556</color>
     <color name="green">#29c770</color>
     <color name="light_ripple">#40ffffff</color>
+    <color name="primary_selected_text_color">#0F5D98</color>
+    <color name="color_name_">#045C97</color>
+    <color name="color_from">#485761</color>
+    <color name="color_inbound">#0A9282</color>
+    <color name="colorPlaced">#D7F5FF</color>
+    <color name="viewColor">#d0d5dd</color>
 
-
-
-
-
-
+    <color name="inquiry_text">#7d7b89</color>
 
 </resources>

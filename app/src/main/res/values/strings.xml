@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ShipperInboundOrder</string>
     <string name="str_view_inbound_orders">View Inbound Orders</string>
+    <string name="str_orders">Orders</string>
     <string name="str_your_order_details">Your order details</string>
     <string name="str_order_no">Order no.</string>
     <string name="str_external_order_no">External Order No.</string>
@@ -83,5 +84,14 @@
     <string name="terms_of_use">Terms Of Use</string>
     <string name="privacy">Privacy</string>
     <string name="policy">Policy</string>
+    <string name="str_create_outbound">Create Outbound</string>
+    <string name="str_type_here_to_search">Type here to search</string>
+    <string name="id">Order No:</string>
+    <string name="str_sto">(STO)</string>
+    <string name="str_created_by">Created By</string>
+    <string name="str_est_arrival_delivery">Est. Arrival &amp; Delivery Date</string>
+    <string name="str_no_order_found">No Orders Data Found</string>
+    <string name="str_inbound">Inbound</string>
+    <string name="str_outbound">Outbound</string>
 
 </resources>

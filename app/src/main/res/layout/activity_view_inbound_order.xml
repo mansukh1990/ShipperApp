@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bg_color"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activity.ViewInboundOrderActivity">
 
 <androidx.core.widget.NestedScrollView
     android:id="@+id/nestedScrollView"
@@ -285,6 +287,7 @@
                     android:fontFamily="@font/mont_medium"
                     android:text="@string/str_sku_qty"
                     android:textColor="#0F5D98"
+                    android:gravity="end"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -296,9 +299,10 @@
                 android:id="@+id/rvAddedProducts"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="4dp"
                 android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="@id/clAddedProducts"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/clAddedProducts"
                 app:layout_constraintTop_toBottomOf="@+id/clSkuTitle" />
 

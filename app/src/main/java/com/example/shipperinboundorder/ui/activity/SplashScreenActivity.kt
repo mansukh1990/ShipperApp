@@ -28,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun checkLoginStatus() {
         if (sharedPrefManager.isLoggedIn()) {
-            startActivity(Intent(this, CreateInbound::class.java))
+            startActivity(Intent(this, OrderActivity::class.java))
             finish()
         } else {
            startActivity(Intent(this,LoginActivity::class.java))

@@ -1,5 +1,6 @@
 package com.example.shipperinboundorder.ui.activity
 
+//noinspection SuspiciousImport
 import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -7,14 +8,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.example.shipperinboundorder.adapter.AddYourProductAdapter
+import com.example.shipperinboundorder.adapter.SkuAdapter
 import com.example.shipperinboundorder.api.RetrofitInstance
 import com.example.shipperinboundorder.databinding.ActivityCreateInboundBinding
+import com.example.shipperinboundorder.databinding.DialogInboundConfrimationBinding
 import com.example.shipperinboundorder.model.modelapi.inboundorderskulist.Sku
 import com.example.shipperinboundorder.model.modelapi.inboundorderskulist.SkuRequest
 import com.example.shipperinboundorder.model.modelapi.inboundorderskulist.SkuResponse
@@ -32,10 +36,11 @@ import java.util.Locale
 class CreateInbound : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateInboundBinding
-    private lateinit var addYourProductAdapter: AddYourProductAdapter
+    private lateinit var addYourProductAdapter: SkuAdapter
+    private val selectedSkus = mutableListOf<Pair<Sku, Int>>()
     private lateinit var sharedPrefManager: SharedPrefManager
-    private val addedSkus = mutableListOf<Pair<Sku, Int>>()
-    private val availableSkus = mutableListOf<Sku>()
+    private val skuList = mutableListOf<Sku>()
+    private lateinit var skuId : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,156 +51,16 @@ class CreateInbound : AppCompatActivity() {
 
         setRecyclerViewAddYourProduct()
         setDatePicker()
-        btnSubmit()
         fetchSKUsAndSetAutoComplete()
-        createInboundOrder()
+        // createInboundOrder()
 
         binding.ivBack.setOnClickListener {
+            startActivity(Intent(this, OrderActivity::class.java))
             finish()
         }
         binding.btnAddProduct.setOnClickListener {
-            addSkuToList()
+            addSkuToRecyclerView()
         }
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun addSkuToList() {
-        val selectedSkuName = binding.edtSelectSku.text.toString()
-        val quantity = binding.edtEnterQty.text.toString().toIntOrNull()
-
-
-        val selectedSku = availableSkus.find { it.name == selectedSkuName }
-        if (selectedSku != null && quantity != null) {
-            addedSkus.add(Pair(selectedSku, quantity))
-            addYourProductAdapter.notifyDataSetChanged()
-
-            availableSkus.remove(selectedSku)
-            setAutoCompleteTextView()
-
-            binding.edtSelectSku.text.clear()
-            binding.edtEnterQty.text?.clear()
-        } else {
-            showErrorDialog(
-                type = SweetAlertDialog.ERROR_TYPE,
-                title = "Opps...",
-                message = "Invalid SKU or Quantity",
-                confirmText = "OK"
-            )
-        }
-    }
-
-    private fun createInboundOrder() {
-        val token = sharedPrefManager.getToken()
-
-        if (token.isNullOrEmpty()) {
-            tokenExpire()
-        }
-        val request = InboundOrderCreateRequest(
-            expected_delivery_date = 19 / 10 / 2024,
-            external_order_no = 236598,
-            quantity = listOf(100),
-            remarks = "test",
-            sku_id = listOf(50028),
-            warehouse = 2
-        )
-        RetrofitInstance.retrofitBuilder.createInboundOrder("Bearer$token", request)
-            .enqueue(object : Callback<InboundOrderCreateResponse> {
-                override fun onResponse(
-                    call: Call<InboundOrderCreateResponse>,
-                    response: Response<InboundOrderCreateResponse>
-                ) {
-                    if (response.isSuccessful && response.body() != null) {
-                        val responseBody = response.body()
-                        if (responseBody != null) {
-                            if (responseBody.responseCode == 200) {
-                                Toast.makeText(
-                                    applicationContext,
-                                    responseBody.response,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    applicationContext,
-                                    "Failed to create Inbound Order",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            "Error: ${response.message()}",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-
-                }
-
-                override fun onFailure(call: Call<InboundOrderCreateResponse>, t: Throwable) {
-                    Toast.makeText(
-                        applicationContext,
-                        "API Call Failed: ${t.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    Log.e("API_ERROR", "onFailure: ${t.message}")
-                }
-
-            })
-    }
-
-    private fun fetchSKUsAndSetAutoComplete() {
-
-        val token = sharedPrefManager.getToken()
-
-        if (token.isNullOrEmpty()) {
-            tokenExpire()
-        }
-        val request = SkuRequest(
-            warehouse = 2,
-            search = "",
-            exclude_sku_ids = listOf(16, 18, 12)
-        )
-        RetrofitInstance.retrofitBuilder.getSkus("Bearer $token", request)
-            .enqueue(object : Callback<SkuResponse> {
-                override fun onResponse(call: Call<SkuResponse>, response: Response<SkuResponse>) {
-                    if (response.isSuccessful && response.body() != null) {
-                        val responseBody = response.body()
-                        if (responseBody?.responseCode == 200) {
-                            availableSkus.addAll(responseBody.data)
-                            setAutoCompleteTextView()
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                "Failed to fetch SKUs",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            "Error: ${response.message()}",
-                            Toast.LENGTH_LONG
-                        ).show()
-
-                    }
-                }
-
-                override fun onFailure(call: Call<SkuResponse>, t: Throwable) {
-                    Log.e("API_ERROR", "onFailure: ${t.message}")
-                    Toast.makeText(applicationContext, "Error: ${t.message}", Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-            })
-    }
-
-    private fun setAutoCompleteTextView() {
-        val skuNames = availableSkus.map { it.name }
-        val adapter = ArrayAdapter(this, R.layout.simple_dropdown_item_1line, skuNames)
-        binding.edtSelectSku.setAdapter(adapter)
-    }
-
-    private fun btnSubmit() {
         binding.btnSubmit.setOnClickListener {
             if (TextUtils.isEmpty(binding.edtOrderNo.text.toString())) {
                 showErrorDialog(
@@ -224,7 +89,238 @@ class CreateInbound : AppCompatActivity() {
                 )
                 return@setOnClickListener
             }
+            if (addYourProductAdapter.isEmpty()) {
+                showErrorDialog(
+                    type = SweetAlertDialog.ERROR_TYPE,
+                    title = "No Products Added",
+                    message = "Please add at least one product to proceed",
+                    confirmText = "Ok"
+                )
+            } else {
+                if (selectedSkus.isNotEmpty()) {
+                    showConfirmationDialog()
+                }
+
+            }
+
         }
+
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun addSkuToRecyclerView() {
+        val skuName = binding.edtSelectSku.text.toString()
+        val quantity = binding.edtEnterQty.text.toString().toIntOrNull()
+
+
+        if (skuName.isNotEmpty() && quantity != null) {
+            val sku = Sku(skuName,quantity )
+            selectedSkus.add(Pair(sku, quantity))
+            addYourProductAdapter.notifyDataSetChanged()
+
+            // Remove the SKU from the AutocompleteTextView suggestions
+            val adapter = binding.edtSelectSku.adapter as ArrayAdapter<String>
+            val position = adapter.getPosition(skuName)
+            adapter.remove(skuName)
+
+            binding.edtSelectSku.setText("")
+            binding.edtEnterQty.setText("")
+
+        } else if (TextUtils.isEmpty(binding.edtSelectSku.text.toString())) {
+            showErrorDialog(
+                type = SweetAlertDialog.ERROR_TYPE,
+                title = "Opps...",
+                message = "Enter Valid SKU",
+                confirmText = "OK"
+            )
+        } else if (TextUtils.isEmpty(binding.edtEnterQty.text.toString())) {
+            showErrorDialog(
+                type = SweetAlertDialog.ERROR_TYPE,
+                title = "Opps...",
+                message = "Enter Valid Qty",
+                confirmText = "OK"
+            )
+        }
+    }
+
+    private fun createInboundOrder() {
+        val token = sharedPrefManager.getToken()
+
+        val orderNumber = binding.edtOrderNo.text.toString().toInt()
+        val expectedDeliveryDate = binding.edtSelectedDate.text.toString()
+
+        val skuIds = selectedSkus.map { it.first.id }
+        val quantities = selectedSkus.map { it.second }
+
+        val request = InboundOrderCreateRequest(
+            expected_delivery_date = expectedDeliveryDate,
+            external_order_no = orderNumber,
+            quantity = quantities,
+            remarks = "",
+            sku_id = skuIds,
+            warehouse = 2,
+        )
+        Log.e("TAG", "createInboundOrder: $skuIds")
+        RetrofitInstance.retrofitBuilder.createInboundOrder("Bearer $token", request)
+            .enqueue(object : Callback<InboundOrderCreateResponse> {
+                override fun onResponse(
+                    call: Call<InboundOrderCreateResponse>,
+                    response: Response<InboundOrderCreateResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val inboundOrderResponse = response.body()
+                        if (inboundOrderResponse != null) {
+                            if (inboundOrderResponse.responseCode == 200) {
+                                Log.d(
+                                    "API Success",
+                                    "Response Code: ${inboundOrderResponse.responseCode}"
+                                )
+                                Log.d(
+                                    "API Success",
+                                    "Response Message: ${inboundOrderResponse.response}"
+                                )
+                                Log.d("API Success", "Status: ${inboundOrderResponse.status}")
+                                Toast.makeText(
+                                    applicationContext,
+                                    inboundOrderResponse.response,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                navigateToViewInboundOrderDetails()
+                            } else {
+                                Log.e("API Error", "Empty response body")
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Failed to create Inbound Order",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("API Error", "Error: $errorBody")
+                        Toast.makeText(
+                            applicationContext,
+                            "Error: ${response.message()}",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    }
+
+                }
+
+                override fun onFailure(call: Call<InboundOrderCreateResponse>, t: Throwable) {
+                    Toast.makeText(
+                        applicationContext,
+                        "API Call Failed: ${t.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.e("API_ERROR", "onFailure: ${t.message}")
+                }
+
+            })
+    }
+
+    private fun navigateToViewInboundOrderDetails() {
+        val intent = Intent(this, ViewInboundOrderActivity::class.java)
+        intent.putExtra("order Number", binding.edtOrderNo.text.toString())
+        intent.putExtra("expectedDeliveryDate", binding.edtSelectedDate.text.toString())
+        intent.putExtra("comments", binding.edtEnterYourComments.text.toString())
+        intent.putParcelableArrayListExtra("selectedSkus", ArrayList(selectedSkus.map { it.first }))
+        intent.putIntegerArrayListExtra("quantities", ArrayList(selectedSkus.map { it.second }))
+        startActivity(intent)
+    }
+
+    private fun fetchSKUsAndSetAutoComplete() {
+
+        val token = sharedPrefManager.getToken()
+
+        if (token.isNullOrEmpty()) {
+            tokenExpire()
+        }
+        val request = SkuRequest(
+            warehouse = 2,
+            search = "",
+            exclude_sku_ids = listOf(16, 18, 12)
+        )
+        RetrofitInstance.retrofitBuilder.getSkus("Bearer $token", request)
+            .enqueue(object : Callback<SkuResponse> {
+                override fun onResponse(call: Call<SkuResponse>, response: Response<SkuResponse>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val responseBody = response.body()
+                        if (responseBody?.responseCode == 200) {
+                            skuList.addAll(responseBody.data)
+                            Log.e("TAG", "onResponse: "+skuList.toString(), )
+                            setAutoCompleteTextView()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "Failed to fetch SKUs",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    } else {
+                        Toast.makeText(
+                            applicationContext,
+                            "Error: ${response.message()}",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    }
+                }
+
+                override fun onFailure(call: Call<SkuResponse>, t: Throwable) {
+                    Log.e("API_ERROR", "onFailure: ${t.message}")
+                    Toast.makeText(applicationContext, "Error: ${t.message}", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            })
+    }
+
+    private fun setAutoCompleteTextView() {
+        val skuNames = skuList.map { it.name }
+        val adapter = ArrayAdapter(this, R.layout.simple_dropdown_item_1line, skuNames)
+        binding.edtSelectSku.setAdapter(adapter)
+        binding.edtSelectSku.setOnItemClickListener { parent, view, position, id ->
+            val selectedSku = skuList[position].id
+            skuId = selectedSku.toString()
+        }
+    }
+
+
+    private fun showConfirmationDialog() {
+        val confirmationDialogBinding =
+            DialogInboundConfrimationBinding.inflate(LayoutInflater.from(this))
+
+
+        confirmationDialogBinding.txtExtOrderValue.text = binding.edtOrderNo.text.toString()
+        confirmationDialogBinding.txtEstArrivalDateValue.text =
+            binding.edtSelectedDate.text.toString()
+        confirmationDialogBinding.rvSku.adapter =
+            SkuAdapter(selectedSkus, allowDelete = false, onDeleteClick = {})
+
+        confirmationDialogBinding.rvSku.layoutManager = LinearLayoutManager(this)
+
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(confirmationDialogBinding.root)
+        builder.setCancelable(true)
+
+        val dialog = builder.create()
+
+        confirmationDialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        confirmationDialogBinding.btnSubmit.setOnClickListener {
+            createInboundOrder()
+            dialog.dismiss()
+
+        }
+        confirmationDialogBinding.imgCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
     }
 
     private fun tokenExpire() {
@@ -274,11 +370,22 @@ class CreateInbound : AppCompatActivity() {
 
 
     private fun setRecyclerViewAddYourProduct() {
-        addYourProductAdapter = AddYourProductAdapter(addedSkus)
+        addYourProductAdapter = SkuAdapter(selectedSkus, allowDelete = true) { position ->
+            removeSkuFromRecyclerView(position)
+        }
         binding.rvAddYourProduct.layoutManager = LinearLayoutManager(this)
         binding.rvAddYourProduct.adapter = addYourProductAdapter
 
-        fetchSKUsAndSetAutoComplete()
+    }
+
+    private fun removeSkuFromRecyclerView(position: Int) {
+        val skuName = selectedSkus[position].first.name
+        selectedSkus.removeAt(position)
+        addYourProductAdapter.notifyItemRemoved(position)
+
+        // Restore SKU to AutocompleteTextView
+        val adapter = binding.edtSelectSku.adapter as ArrayAdapter<String>
+        adapter.add(skuName)
     }
 
 }

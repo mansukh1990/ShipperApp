@@ -1,6 +1,7 @@
     plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+        id("kotlin-parcelize")
 }
 
 android {
@@ -59,5 +60,10 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.7.2")
     implementation ("com.github.f0ris.sweetalert:library:1.5.6")
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation ("com.airbnb.android:lottie:5.2.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
 }
 

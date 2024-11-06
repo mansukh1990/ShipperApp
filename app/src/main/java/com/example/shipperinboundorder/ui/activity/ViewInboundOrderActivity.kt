@@ -1,7 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.shipperinboundorder.ui.activity
 
 import ViewPager2ViewHeightAnimator
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -11,38 +15,84 @@ import com.example.shipperinboundorder.adapter.SkuBottomSheetAdapter
 import com.example.shipperinboundorder.adapter.ViewPagerAdapter
 import com.example.shipperinboundorder.databinding.ActivityViewInboundOrderBinding
 import com.example.shipperinboundorder.databinding.ItemLayoutSkuBottomSheetBinding
-import com.example.shipperinboundorder.model.SkuListModel
+import com.example.shipperinboundorder.model.modelapi.inboundorderskulist.Sku
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 
 
-@Suppress("DEPRECATION")
 class ViewInboundOrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityViewInboundOrderBinding
-    private lateinit var skuAdapter: SkuAdapter
-    private lateinit var skuBottomSheetAdapter: SkuBottomSheetAdapter
     private lateinit var viewPagerAdapter: ViewPagerAdapter
-
-
-    private val addSkuList = mutableListOf<SkuListModel>()
+    private lateinit var skuAdapter: SkuAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityViewInboundOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val viewPager2 = findViewById<ViewPager2>(R.id.viewPager)
         val viewPager2ViewHeightAnimator = ViewPager2ViewHeightAnimator()
         viewPager2ViewHeightAnimator.viewPager2 = viewPager2
 
+        getIntentData()
         setViewPager()
         setupTabLayout()
-        setRecyclerViewAddedProducts()
-        setSkuBottomSheetAdapter()
 
+        binding.ivBack.setOnClickListener {
+            startActivity(Intent(this, CreateInbound::class.java))
+            finish()
+        }
+
+    }
+
+    private fun getIntentData() {
+        val orderNumber = intent.getStringExtra("orderNumber")
+        val expectedDeliveryDate = intent.getStringExtra("expectedDeliveryDate")
+        val comments = intent.getStringExtra("comments")
+        val selectedSkus = intent.getParcelableArrayListExtra<Sku>("selectedSkus")
+        val quantities = intent.getIntegerArrayListExtra("quantities")
+
+        binding.edtOrderNo.setText(orderNumber)
+        binding.edtSelectedDate.setText(expectedDeliveryDate)
+        binding.edtEnterYourComments.setText(comments)
+
+        setupRecyclerView(selectedSkus!!, quantities!!)
+
+        if (selectedSkus.size > 5) {
+            binding.txtViewAllSkuList.visibility = View.VISIBLE
+            binding.txtViewAllSkuList.setOnClickListener {
+                showBottomSheetDialog(selectedSkus, quantities)
+            }
+        } else {
+            binding.txtViewAllSkuList.visibility = View.GONE
+        }
+
+    }
+
+    private fun setupRecyclerView(skus: List<Sku>, quantities: List<Int>) {
+        val firstFiveSkus = skus.take(5).mapIndexed { index, sku -> sku to quantities[index] }
+        skuAdapter = SkuAdapter(firstFiveSkus.toMutableList(), allowDelete = false, onDeleteClick = {})
+        binding.rvAddedProducts.layoutManager = LinearLayoutManager(this)
+        binding.rvAddedProducts.adapter = skuAdapter
+    }
+
+    private fun showBottomSheetDialog(skus: List<Sku>, quantities: List<Int>) {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val bottomSheetBinding = ItemLayoutSkuBottomSheetBinding.inflate(layoutInflater)
+
+        val recyclerView = bottomSheetBinding.rvSkuViewAllList
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = SkuAdapter(
+            skus.mapIndexed { index, sku -> sku to quantities[index] }.toMutableList(),
+            allowDelete = false, onDeleteClick = {}
+        )
+        bottomSheetDialog.setContentView(bottomSheetBinding.root)
+
+        bottomSheetDialog.show()
     }
 
     private fun setupTabLayout() {
@@ -91,63 +141,6 @@ class ViewInboundOrderActivity : AppCompatActivity() {
 
     }
 
-    private fun setSkuBottomSheetAdapter() {
-        binding.txtViewAllSkuList.setOnClickListener {
-            showBottomSheetDialog()
-        }
-    }
-
-    private fun showBottomSheetDialog() {
-        val bottomSheetDialog = BottomSheetDialog(this)
-        val bottomSheetBinding = ItemLayoutSkuBottomSheetBinding.inflate(layoutInflater)
-        bottomSheetDialog.setContentView(bottomSheetBinding.root)
-
-        skuBottomSheetAdapter = SkuBottomSheetAdapter(addSkuList)
-        bottomSheetBinding.rvSkuViewAllList.layoutManager = LinearLayoutManager(this)
-        bottomSheetBinding.rvSkuViewAllList.adapter = skuBottomSheetAdapter
-
-        bottomSheetDialog.show()
-    }
-
-    private fun setRecyclerViewAddedProducts() {
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-        addSkuList.add(SkuListModel("Slice Cassata Novelty", "312313"))
-
-        val firstFiveSkus = addSkuList.take(5)
-        skuAdapter = SkuAdapter(firstFiveSkus)
-        binding.rvAddedProducts.layoutManager = LinearLayoutManager(this)
-        binding.rvAddedProducts.adapter = skuAdapter
-
-    }
 
     private fun setViewPager() {
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
