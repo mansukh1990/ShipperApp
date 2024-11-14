@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 class SharedPrefManager(context: Context) {
 
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("CelciusLogis", Context.MODE_PRIVATE)
+        context.getSharedPreferences("CelciusLogistics", Context.MODE_PRIVATE)
 
     companion object {
         const val TOKEN_KEY = "token"

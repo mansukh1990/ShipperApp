@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shipperinboundorder.R
 import com.example.shipperinboundorder.adapter.SkuAdapter
-import com.example.shipperinboundorder.adapter.SkuBottomSheetAdapter
 import com.example.shipperinboundorder.adapter.ViewPagerAdapter
 import com.example.shipperinboundorder.databinding.ActivityViewInboundOrderBinding
 import com.example.shipperinboundorder.databinding.ItemLayoutSkuBottomSheetBinding
